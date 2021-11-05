@@ -118,3 +118,57 @@ def gen_click_around_border(label, label_dt=None, click=5, max_border_distance=1
                 click_pos_i.append(coord)
 
         yield click_map, click_pos
+
+
+# generate 4(2D)/6(3D) extreme points click
+def get_click_extreme_points(label):
+    labels_n = np.max(label)
+
+    click_map = np.zeros(label.shape, dtype=label.dtype)
+    click_pos = []
+
+    def add_click(coord):
+        click_pos.append(coord)
+        click_map[coord] = 1
+
+    def get_3d_coord(view):
+        label_coord = np.argwhere(view > 0)
+        xmin = np.min(label_coord[:, 0])
+        ymin = np.random.choice(np.argwhere(view[xmin])[:, 0])
+        zmin = np.random.choice(np.argwhere(view[xmin])[:, 1])
+        xmax = np.max(label_coord[:, 0])
+        ymax = np.random.choice(np.argwhere(view[xmax])[:, 0])
+        zmax = np.random.choice(np.argwhere(view[xmax])[:, 1])
+        return xmin, ymin, zmin, xmax, ymax, zmax
+
+    if len(label.shape) == 2:
+        for i in range(labels_n):
+            view_ = label == i+1
+            view = np.expand_dims(view_, -1)
+            xmin, ymin, zmin, xmax, ymax, zmax = get_3d_coord(view)
+            add_click(tuple([xmin, ymin]))
+            add_click(tuple([xmax, ymax]))
+
+            view = np.expand_dims(np.swapaxes(view_, 0, 1), -1)
+            xmin, ymin, zmin, xmax, ymax, zmax = get_3d_coord(view)
+            add_click(tuple([ymin, xmin]))
+            add_click(tuple([ymax, xmax]))
+
+    elif len(label.shape) == 3:
+        for i in range(labels_n):
+            view_ = label == i+1
+            xmin, ymin, zmin, xmax, ymax, zmax = get_3d_coord(view_)
+            add_click(tuple([xmin, ymin, zmin]))
+            add_click(tuple([xmax, ymax, zmax]))
+
+            view = np.swapaxes(view_, 1, 0)
+            xmin, ymin, zmin, xmax, ymax, zmax = get_3d_coord(view)
+            add_click(tuple([ymin, xmin, zmin]))
+            add_click(tuple([ymax, xmax, zmax]))
+
+            view = np.swapaxes(view_, 2, 0)
+            xmin, ymin, zmin, xmax, ymax, zmax = get_3d_coord(view)
+            add_click(tuple([zmin, ymin, xmin]))
+            add_click(tuple([zmax, ymax, xmax]))
+
+    return click_map, click_pos
