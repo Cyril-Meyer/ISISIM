@@ -25,7 +25,7 @@ def example_2d(export=False):
 
     plt.imshow(utils.combine_image_and_maps(dense_label_2d, pos_click_map, neg_click_map))
     if export:
-        plt.savefig('media/example_2d.png')
+        plt.savefig('media/example_2d_s.png')
     plt.show()
 
 
@@ -45,7 +45,7 @@ def example_3d(export=False):
 
     save_filename = None
     if export:
-        save_filename = 'media/example_3d.gif'
+        save_filename = 'media/example_3d_s.gif'
     utils.show_stack(utils.combine_image_and_maps(dense_label_3d, pos_click_map, neg_click_map), save_filename=save_filename)
 
 
@@ -108,6 +108,11 @@ def benchmark_(dense_label_3d):
         _, _ = next(gen_neg)
     t1 = time.time()
     print('| gen_click_around_border |', round(t1 - t0, 3), '|')
+
+    t0 = time.time()
+    _, _ = generatorS.get_click_extreme_points(dense_label_3d)
+    t1 = time.time()
+    print('| get_click_extreme_points |', round(t1 - t0, 3), '|')
 
 
 def benchmark():

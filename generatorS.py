@@ -129,7 +129,6 @@ def get_click_extreme_points(label):
         zmax = np.random.choice(np.argwhere(view[xmax])[:, 1])
         return xmin, ymin, zmin, xmax, ymax, zmax
 
-
     if len(label.shape) == 2:
         view = np.expand_dims(label, -1)
         xmin, ymin, zmin, xmax, ymax, zmax = get_3d_coord(view)
