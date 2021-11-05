@@ -9,6 +9,7 @@
 # click    : number of click
 # ---------------------------------------------------------------------------- #
 import random
+import time
 import numpy as np
 import edt
 
@@ -55,6 +56,10 @@ def gen_click_random_uniform_advanced(label, label_dt=None, click=5, d_step=10, 
             click_pos.append(coord)
 
             if d_step is not None:
+                # remove label_coord_ closer than d_step
+                # distances = np.sqrt(np.sum(np.square(np.array(coord) - label_coord_), axis=1))
+                # label_coord_ = label_coord_[np.where(distances > d_step)]
+
                 if len(label.shape) == 2:
                     label_dt_[coord[0]-d_step:coord[0]+d_step,
                               coord[1]-d_step:coord[1]+d_step] = False

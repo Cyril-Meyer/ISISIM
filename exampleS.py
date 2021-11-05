@@ -49,36 +49,47 @@ def example_3d(export=False):
     utils.show_stack(utils.combine_image_and_maps(dense_label_3d, pos_click_map, neg_click_map), save_filename=save_filename)
 
 
-def benchmark_3d():
-    dense_label_3d = skimage.draw.ellipsoid(128, 128, 128)
-    dense_label_3d = np.pad(dense_label_3d, ((100, 25), (100, 25), (100, 25)))
-    print(dense_label_3d.shape, dense_label_3d.min(), dense_label_3d.max(), dense_label_3d.dtype)
+def benchmark_(dense_label_3d):
+    print(dense_label_3d.shape, dense_label_3d.min(), dense_label_3d.max(), dense_label_3d.dtype,
+          np.sum(dense_label_3d > 0) / np.prod(dense_label_3d.shape))
 
     gen_pos = generatorS.gen_click_random_uniform(dense_label_3d, click=10)
     gen_pos_adv = generatorS.gen_click_random_uniform_advanced(dense_label_3d, click=10)
-    gen_neg = generatorS.gen_click_around_border(np.abs(1 - dense_label_3d), click=10)
+    gen_neg = generatorS.gen_click_around_border(dense_label_3d, click=10)
 
     t0 = time.time()
-    for _ in range(8):
+    for _ in range(32):
         _, _ = next(gen_pos)
     t1 = time.time()
-    print(t1 - t0)
+    print('| gen_click_random_uniform |', round(t1 - t0, 3), '|')
 
     t0 = time.time()
-    for _ in range(8):
+    for _ in range(32):
         _, _ = next(gen_pos_adv)
     t1 = time.time()
-    print(t1 - t0)
+    print('| gen_click_random_uniform_advanced |', round(t1 - t0, 3), '|')
 
     t0 = time.time()
-    for _ in range(8):
+    for _ in range(32):
         _, _ = next(gen_neg)
     t1 = time.time()
-    print(t1 - t0)
+    print('| gen_click_around_border |', round(t1 - t0, 3), '|')
+
+
+def benchmark():
+    dense_label_3d = skimage.draw.ellipsoid(125, 125, 125)
+    dense_label_3d = np.pad(dense_label_3d, ((2, 1), (2, 1), (2, 1)))
+    benchmark_(dense_label_3d)
+    benchmark_(np.abs(1 - dense_label_3d))
+
+    dense_label_3d = skimage.draw.ellipsoid(32, 32, 32)
+    dense_label_3d = np.pad(dense_label_3d, ((164, 25), (164, 25), (164, 25)))
+    benchmark_(dense_label_3d)
+    benchmark_(np.abs(1 - dense_label_3d))
 
 
 if __name__ == "__main__":
     # example_2d(export=False)
     # example_3d(export=False)
-    benchmark_3d()
+    benchmark()
     exit(0)
