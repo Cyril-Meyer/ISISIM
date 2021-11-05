@@ -7,8 +7,8 @@
 
 | algo | single object | multiple objects |
 | --- | --- | --- |
-| α | ![example_2d](media/example_2d.png) | ![example_2d_m](media/example_2d_m.png) |
-| α | ![example_3d](media/example_3d.gif) | ![example_3d_m](media/example_3d_m.gif) |
+| α | ![example_2d](media/example_2d_s.png) | ![example_2d_m](media/example_2d_m.png) |
+| α | ![example_3d](media/example_3d_s.gif) | ![example_3d_m](media/example_3d_m.gif) |
 | β | ![example_2d_s_extreme](media/example_2d_s_extreme.png) | |
 | β | ![example_3d_s_extreme](media/example_3d_s_extreme.gif) | |
 
