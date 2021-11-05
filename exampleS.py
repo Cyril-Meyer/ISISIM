@@ -8,7 +8,7 @@ import generatorS
 
 
 def example_2d(export=False):
-    dense_label_2d = img = np.zeros((256, 256), dtype=np.uint8)
+    dense_label_2d = np.zeros((256, 256), dtype=np.uint8)
     dense_label_2d[skimage.draw.disk((128, 128), 64)] = 1
     print(dense_label_2d.shape, dense_label_2d.min(), dense_label_2d.max(), dense_label_2d.dtype)
     # plt.imshow(dense_label_2d, cmap="gray")
@@ -89,7 +89,7 @@ def benchmark():
 
 
 if __name__ == "__main__":
-    # example_2d(export=False)
-    # example_3d(export=False)
+    example_2d(export=True)
+    example_3d(export=True)
     benchmark()
     exit(0)
