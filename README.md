@@ -49,6 +49,8 @@ proportion of positive label : 5.2%.
 
 ## References
 * [Deep Interactive Object Selection (Xu et al. 2016)](https://arxiv.org/abs/1603.04042) [:scroll:](references/1603.04042.pdf)
+* [Deep Extreme Cut: From Extreme Points to Object Segmentation (Maninis et al. 2018)](https://arxiv.org/abs/1711.09081) [:scroll:](references/1711.09081.pdf)
+* [Getting to 99% Accuracy in Interactive Segmentation (Forte et al. 2020)](https://arxiv.org/abs/2003.07932) [:scroll:](references/2003.07932.pdf)
 
 If you are interested in user interaction simulation, this repository may interest you :
 [SegmentationToScribble](https://github.com/Cyril-Meyer/SegmentationToScribble)
