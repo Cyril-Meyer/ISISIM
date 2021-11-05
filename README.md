@@ -19,14 +19,13 @@ More details in example*.py benchmark functions.
 * multiple objects image size : (165, 512, 512)
 * batch size : 32 (get_click_extreme_points is run only once)
 * clicks : 10
-
-
-* α : single object, proportion of positive label : 48.7%
-* α- : α inverted label
-* β : single object, proportion of positive label : 0.8%
-* β- : β inverted label
-* γ . multiple objects, proportion of positive label : 5.2%
-* γ- : γ inverted label
+* legend
+  * α : single object, proportion of positive label : 48.7%
+  * α- : α inverted label
+  * β : single object, proportion of positive label : 0.8%
+  * β- : β inverted label
+  * γ . multiple objects, proportion of positive label : 5.2%
+  * γ- : γ inverted label
 
 | function | α | α- | β | β- | γ | γ- |
 | --- | --- | --- | --- | --- | --- | --- |
