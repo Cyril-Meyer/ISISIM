@@ -63,6 +63,10 @@ def gen_click_random_uniform_advanced(label, label_dt=None, click=5, d_step=10, 
                 if len(label_coord_) == 0:
                     label_coord_ = np.copy(label_coord[i])
 
+                if len(label_coord_) == 0:
+                    print('error empty label_coord_', i, len(label_coord_))
+                    continue
+
                 coord = tuple(label_coord_[random.randint(0, len(label_coord_)-1)])
                 click_map[coord] = 1
                 click_pos.append(coord)

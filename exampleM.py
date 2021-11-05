@@ -14,9 +14,13 @@ def example_2d(export=False):
     dense_label_2d = tifffile.imread('VREMS-data/lucchi/label.tif')[0] > 0
     print(dense_label_2d.shape, dense_label_2d.min(), dense_label_2d.max(), dense_label_2d.dtype)
 
-    gen_pos = generatorM.gen_click_random_uniform_advanced(skimage.measure.label(dense_label_2d), click=2, d_step=25, d_margin=5)
-    dense_label_2d_inv = np.logical_and(dense_label_2d == 0, edt.edt(np.abs(1 - dense_label_2d)) < 25)
-    gen_neg = generatorM.gen_click_around_border(skimage.measure.label(dense_label_2d_inv), click=3, max_border_distance=np.inf)
+    dense_labels_2d = skimage.measure.label(dense_label_2d)
+    gen_pos = generatorM.gen_click_random_uniform_advanced(dense_labels_2d, click=2, d_step=25, d_margin=5)
+    dense_label_2d_inv = dense_labels_2d
+    for _ in range(5):
+        dense_label_2d_inv = skimage.morphology.dilation(dense_label_2d_inv, skimage.morphology.disk(5))
+    dense_label_2d_inv = np.where(skimage.morphology.dilation(dense_label_2d, skimage.morphology.disk(5)), 0, dense_label_2d_inv)
+    gen_neg = generatorM.gen_click_around_border(dense_label_2d_inv, click=3, max_border_distance=np.inf)
 
     pos_click_map, _ = next(gen_pos)
     neg_click_map, _ = next(gen_neg)
@@ -35,9 +39,13 @@ def example_3d(export=False):
     print(dense_label_3d.shape, dense_label_3d.min(), dense_label_3d.max(), dense_label_3d.dtype)
     # utils.show_stack(dense_label_3d, cmap="gray")
 
-    gen_pos = generatorM.gen_click_random_uniform_advanced(skimage.measure.label(dense_label_3d), click=3, d_step=25, d_margin=None)
-    dense_label_3d_inv = np.logical_and(dense_label_3d == 0, edt.edt(np.abs(1 - dense_label_3d)) < 25)
-    gen_neg = generatorM.gen_click_around_border(skimage.measure.label(dense_label_3d_inv), click=7, max_border_distance=np.inf)
+    dense_labels_3d = skimage.measure.label(dense_label_3d)
+    gen_pos = generatorM.gen_click_random_uniform_advanced(dense_labels_3d, click=3, d_step=25, d_margin=5)
+    dense_label_3d_inv = dense_labels_3d
+    for _ in range(8):
+        dense_label_3d_inv = skimage.morphology.dilation(dense_label_3d_inv, skimage.morphology.ball(2))
+    dense_label_3d_inv = np.where(skimage.morphology.dilation(dense_label_3d, skimage.morphology.ball(2)), 0, dense_label_3d_inv)
+    gen_neg = generatorM.gen_click_around_border(dense_label_3d_inv, click=5, max_border_distance=np.inf)
 
     pos_click_map, _ = next(gen_pos)
     neg_click_map, _ = next(gen_neg)
