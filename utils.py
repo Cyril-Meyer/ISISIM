@@ -15,12 +15,13 @@ def combine_image_and_maps(label, pos_click_map, neg_click_map, dilation=3):
         pos_click_map = skimage.morphology.binary_dilation(pos_click_map, se(3))
     for _ in range(dilation):
         neg_click_map = skimage.morphology.binary_dilation(neg_click_map, se(3))
-    label[np.where(pos_click_map > 0)] = 0
-    label[np.where(neg_click_map > 0)] = 0
+
+    label = np.divide(label, (1+pos_click_map))
+    label = np.divide(label, (1+neg_click_map))
 
     result = np.stack([(neg_click_map > 0)*1.0,
                        (pos_click_map > 0)*1.0,
-                       (label > 0)*1.0], axis=-1)
+                       label*1.0], axis=-1)
 
     return result
 
