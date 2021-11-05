@@ -3,10 +3,11 @@
 
 ## Examples
 *blue = label, green = positive click, red = negative click, the click maps are dilated for better visualization.*  
-single object
+single object  
 ![example_2d](media/example_2d.png)
 ![example_3d](media/example_3d.gif)
-multiple objects
+
+multiple objects  
 ![example_2d_m](media/example_2d_m.png)
 ![example_3d_m](media/example_3d_m.gif)
 
