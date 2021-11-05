@@ -21,13 +21,13 @@ More details in example*.py benchmark functions.
 * clicks : 10
 * legend
   * α : single object, proportion of positive label : 48.7%
-  * α- : α inverted label
+  * α<sup>-</sup> : α inverted label
   * β : single object, proportion of positive label : 0.8%
-  * β- : β inverted label
+  * β<sup>-</sup> : β inverted label
   * γ . multiple objects, proportion of positive label : 5.2%
-  * γ- : γ inverted label
+  * γ<sup>-</sup> : γ inverted label
 
-| function | α | α- | β | β- | γ | γ- |
+| function | α | α<sup>-</sup> | β | β<sup>-</sup> | γ | γ<sup>-</sup> |
 | --- | --- | --- | --- | --- | --- | --- |
 | generatorS.gen_click_random_uniform | 0.148 | 0.196 | 0.047 | 0.313 | 2.651 | 2.798 |
 | generatorS.gen_click_random_uniform_advanced | 46.085 | 47.545 | 13.984 | 97.604 | 32.83 | 125.931 |
