@@ -176,3 +176,41 @@ def get_click_extreme_points(label):
             add_click(tuple([zmax, ymax, xmax]))
 
     return click_map, click_pos
+
+
+# generate random click to fill the label.
+# d_step   : minimum distance between different clicks
+# d_margin : minimum distance to the border
+def gen_click_fill(label, label_dt=None, d_step=50, d_margin=20):
+    if label_dt is None:
+        label_dt = edt.edt(label > 0)
+
+    if d_margin is not None:
+        label_dt = label_dt > d_margin
+
+    labels_n = np.max(label)
+    label_coord = []
+    for i in range(1, labels_n + 1):
+        label_coord.append(np.argwhere(np.logical_and(label == i, label_dt > 0)))
+
+    while True:
+        click_map = np.zeros(label.shape, dtype=label.dtype)
+        click_pos = []
+
+        for i in range(labels_n):
+            label_coord_ = np.copy(label_coord[i])
+
+            while True:
+                if len(label_coord_) == 0:
+                    break
+
+                coord = tuple(label_coord_[random.randint(0, len(label_coord_)-1)])
+                click_map[coord] = 1
+                click_pos.append(coord)
+
+                if d_step is not None:
+                    # remove label_coord_ closer than d_step
+                    distances = np.sqrt(np.sum(np.square(np.array(coord) - label_coord_), axis=1))
+                    label_coord_ = label_coord_[np.where(distances > d_step)]
+
+        yield click_map, click_pos
