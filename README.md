@@ -31,10 +31,11 @@ More details in example*.py benchmark functions.
 
 | function | α | α<sup>-</sup> | β | β<sup>-</sup> | γ | γ<sup>-</sup> |
 | --- | --- | --- | --- | --- | --- | --- |
-| generatorS.gen_click_random_uniform | 0.148 | 0.196 | 0.047 | 0.313 | 2.651 | 2.798 |
-| generatorS.gen_click_random_uniform_advanced | 46.085 | 47.545 | 13.984 | 97.604 | 32.83 | 125.931 |
-| generatorS.gen_click_around_border | 62.642 | 68.518 | 2.859 | 6.725 | 49.017 | 236.719 |
-| generatorS.get_click_extreme_points | 0.719 | 0.785 | 0.303 | 1.27 | 14.947 | 7.031 |
+| generatorS.gen_click_random_uniform | 0.1 | 0.1 | 0.1 | 0.3 | 2.6 | 2.7 |
+| generatorS.gen_click_random_uniform_advanced | 46.0 | 47.5 | 13.9 | 97.6 | 32.8 | 125.9 |
+| generatorS.gen_click_around_border | 62.6 | 68.5 | 2.8 | 6.7 | 49.0 | 236.7 |
+| generatorS.get_click_extreme_points | 0.7 | 0.7 | 0.3 | 1.2 | 14.9 | 7.0 |
+| generatorS.gen_click_fill (:warning: depends a lot on the d_step parameter) | 70.3 | 132.8 | 0.5 | 706.6 | 5.1 | 48.6 |
 
 ## References
 * [Deep Interactive Object Selection (Xu et al. 2016)](https://arxiv.org/abs/1603.04042) [:scroll:](references/1603.04042.pdf)

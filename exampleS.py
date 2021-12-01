@@ -132,30 +132,30 @@ def benchmark_(dense_label_3d):
     for _ in range(32):
         _, _ = next(gen_pos)
     t1 = time.time()
-    print('| gen_click_random_uniform |', round(t1 - t0, 3), '|')
+    print('| gen_click_random_uniform |', round(t1 - t0, 1), '|')
 
     t0 = time.time()
     for _ in range(32):
         _, _ = next(gen_pos_adv)
     t1 = time.time()
-    print('| gen_click_random_uniform_advanced |', round(t1 - t0, 3), '|')
+    print('| gen_click_random_uniform_advanced |', round(t1 - t0, 1), '|')
 
     t0 = time.time()
     for _ in range(32):
         _, _ = next(gen_neg)
     t1 = time.time()
-    print('| gen_click_around_border |', round(t1 - t0, 3), '|')
+    print('| gen_click_around_border |', round(t1 - t0, 1), '|')
 
     t0 = time.time()
     for _ in range(32):
         _, _ = next(gen_pos_fill)
     t1 = time.time()
-    print('| gen_click_fill |', round(t1 - t0, 3), '|')
+    print('| gen_click_fill |', round(t1 - t0, 1), '|')
 
     t0 = time.time()
     _, _ = generatorS.get_click_extreme_points(dense_label_3d)
     t1 = time.time()
-    print('| get_click_extreme_points |', round(t1 - t0, 3), '|')
+    print('| get_click_extreme_points |', round(t1 - t0, 1), '|')
 
 
 def benchmark():
@@ -177,5 +177,5 @@ if __name__ == "__main__":
     # example_3d_extreme(export=True)
     # example_2d_fill(export=True)
     # example_3d_fill(export=True)
-    # benchmark()
+    benchmark()
     exit(0)
