@@ -3,7 +3,7 @@
 
 ## Examples
 *blue = label, green = positive click, red = negative click, the click maps are dilated for better visualization.*  
-α *: random uniform (+) around border (-).* β *: extreme points*
+α *: random uniform (+) around border (-).* β *: extreme points.* γ *: random fill.*
 
 | algo | single object | multiple objects |
 | --- | --- | --- |
@@ -11,6 +11,8 @@
 | β | ![example_2d_s_extreme](media/example_2d_s_extreme.png) | ![example_2d_m_extreme](media/example_2d_m_extreme.png) |
 | α | ![example_3d_s](media/example_3d_s.gif) | ![example_3d_m](media/example_3d_m.gif) |
 | β | ![example_3d_s_extreme](media/example_3d_s_extreme.gif) | ![example_3d_m_extreme](media/example_3d_m_extreme.gif)|
+| γ | | ![example_2d_m_fill](media/example_2d_m_fill.png)|
+| γ | | ![example_3d_m_fill](media/example_3d_m_fill.gif)|
 
 ## Benchmark
 More details in example*.py benchmark functions.
