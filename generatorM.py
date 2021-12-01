@@ -182,6 +182,8 @@ def get_click_extreme_points(label):
 # d_step   : minimum distance between different clicks
 # d_margin : minimum distance to the border
 def gen_click_fill(label, label_dt=None, d_step=50, d_margin=20):
+    assert d_step > 0
+
     if label_dt is None:
         label_dt = edt.edt(label > 0)
 
