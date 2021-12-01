@@ -35,7 +35,7 @@ More details in example*.py benchmark functions.
 | generatorS.gen_click_random_uniform_advanced | 46.0 | 47.5 | 13.9 | 97.6 | 32.8 | 125.9 |
 | generatorS.gen_click_around_border | 62.6 | 68.5 | 2.8 | 6.7 | 49.0 | 236.7 |
 | generatorS.get_click_extreme_points | 0.7 | 0.7 | 0.3 | 1.2 | 14.9 | 7.0 |
-| generatorS.gen_click_fill (:warning: depends a lot on the d_step parameter) | 70.3 | 132.8 | 0.5 | 706.6 | 5.1 | 48.6 |
+| generatorS.gen_click_fill <br /> :warning: depends a lot on the d_step parameter | 70.3 | 132.8 | 0.5 | 706.6 | 5.1 | 48.6 |
 
 ## References
 * [Deep Interactive Object Selection (Xu et al. 2016)](https://arxiv.org/abs/1603.04042) [:scroll:](references/1603.04042.pdf)
