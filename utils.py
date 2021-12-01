@@ -45,3 +45,25 @@ def show_stack(stack, interval=50, axis=0, vmin=None, vmax=None, cmap=None, save
         anim.save(save_filename)
 
     plt.show()
+
+
+def get_exterior_neighborhood(label, size, margin, se_radius=3):
+    assert 2 <= len(label.shape) <= 3
+    assert size >= 1
+    assert margin >= 0
+    assert size > margin
+
+    if len(label.shape) == 2:
+        se = skimage.morphology.disk(se_radius)
+    else:
+        se = skimage.morphology.ball(se_radius)
+
+    label_dil_1 = label
+    for _ in range(size):
+        label_dil_1 = skimage.morphology.dilation(label_dil_1, se)
+
+    label_dil_2 = label
+    for _ in range(margin):
+        label_dil_2 = skimage.morphology.dilation(label_dil_2, se)
+
+    return np.where(label_dil_2, 0, label_dil_1)
